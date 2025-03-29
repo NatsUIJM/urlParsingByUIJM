@@ -80,27 +80,20 @@ def parse_url(url):
 def main():
     print("HTML文件解析工具 (bs4-lxml方案)")
     print("=" * 50)
-    print("本工具使用BeautifulSoup和lxml解析器提取网页正文")
-    print("-" * 50)
-    print("请输入要解析的URL (输入'exit'退出):")
+    print("请输入要解析的URL:")
     
-    while True:
-        url = input("> ").strip()
+    url = input("> ").strip()
+    
+    if not url:
+        print("URL不能为空，程序退出")
+        return
         
-        if url.lower() == 'exit':
-            print("程序已退出")
-            break
-        
-        if not url:
-            print("URL不能为空，请重新输入:")
-            continue
-            
-        if not (url.startswith('http://') or url.startswith('https://')):
-            url = 'https://' + url
-            print(f"已添加https://前缀: {url}")
-        
-        parse_url(url)
-        print("\n请输入下一个要解析的URL (输入'exit'退出):")
+    if not (url.startswith('http://') or url.startswith('https://')):
+        url = 'https://' + url
+        print(f"已添加https://前缀: {url}")
+    
+    parse_url(url)
+    print("解析完成，程序退出")
 
 if __name__ == "__main__":
     main()
